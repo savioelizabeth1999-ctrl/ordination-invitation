@@ -4,13 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ordination Invitation - Dn. Chettukadavil Savio VC</title>
+  <!-- AOS for scroll animations -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <style>
     :root {
-      --primary-color: #8b0000;
-      --gold-accent: #d4af37;
-      --bg-dark: #121212;
-      --card-bg: #1e1e1e;
-      --text-light: #f5f5f5;
+      --gold: #d4af37;
+      --deep-red: #8b0000;
+      --bg-dark: #0a0a0c;
+      --surface: #141418;
+      --text: #e0e0e0;
     }
 
     * {
@@ -22,184 +24,275 @@
     body {
       font-family: 'Georgia', serif;
       background-color: var(--bg-dark);
-      color: var(--text-light);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(rgba(10,10,12,0.8), rgba(10,10,12,0.95)), 
+                  radial-gradient(circle at center, #2a0808 0%, var(--bg-dark) 70%);
       text-align: center;
-      line-height: 1.6;
+      padding: 20px;
+      border-bottom: 2px solid var(--gold);
     }
 
-    header {
-      padding: 50px 20px;
-      background: linear-gradient(130deg, #2c0000, #121212);
-      border-bottom: 2px solid var(--gold-accent);
+    .hero h1 {
+      font-size: 3.5rem;
+      color: var(--gold);
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
     }
 
-    h1 {
-      color: var(--gold-accent);
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
+    .hero p {
       font-size: 1.2rem;
       font-style: italic;
+      color: #aaa;
     }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
+    /* Content Sections */
+    section {
+      padding: 100px 20px;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
     }
 
     .card {
-      background: var(--card-bg);
-      border: 1px solid var(--gold-accent);
-      border-radius: 12px;
-      padding: 30px;
-      margin: 30px 0;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      background: var(--surface);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    .profile-img {
-      width: 180px;
-      height: 180px;
-      object-fit: cover;
+    /* Circular Cropped Images */
+    .profile-frame {
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
-      border: 3px solid var(--gold-accent);
+      border: 4px solid var(--gold);
+      margin: 0 auto 20px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    }
+
+    .profile-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    h2 {
+      color: var(--gold);
+      font-size: 2rem;
       margin-bottom: 15px;
     }
 
-    .bishop-img {
-      width: 140px;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 2px solid var(--gold-accent);
+    .title-role {
+      font-size: 1.3rem;
+      color: #fff;
+      font-weight: bold;
       margin-bottom: 10px;
     }
 
-    .details-table {
-      width: 100%;
-      margin-top: 20px;
-      border-collapse: collapse;
-    }
-
-    .details-table td {
-      padding: 12px;
-      border-bottom: 1px solid #333;
-    }
-
-    .details-table td:first-child {
-      font-weight: bold;
-      color: var(--gold-accent);
-      text-align: right;
-      width: 40%;
-    }
-
-    .details-table td:last-child {
+    .details-grid {
+      display: grid;
+      gap: 20px;
+      margin-top: 30px;
       text-align: left;
     }
 
-    .btn {
+    .detail-item {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.03);
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .detail-icon {
+      font-size: 1.8rem;
+      margin-right: 20px;
+      color: var(--gold);
+    }
+
+    .btn-maps {
       display: inline-block;
-      background-color: var(--primary-color);
-      color: var(--gold-accent);
-      padding: 12px 24px;
+      margin-top: 30px;
+      background: var(--deep-red);
+      color: var(--gold);
+      padding: 15px 30px;
       text-decoration: none;
-      border: 1px solid var(--gold-accent);
-      border-radius: 6px;
-      margin-top: 15px;
+      border-radius: 30px;
       font-weight: bold;
+      border: 1px solid var(--gold);
       transition: 0.3s;
     }
 
-    .btn:hover {
-      background-color: var(--gold-accent);
+    .btn-maps:hover {
+      background: var(--gold);
       color: var(--bg-dark);
     }
 
-    .route-section {
-      text-align: left;
-      margin-top: 15px;
+    /* Floating Audio Player */
+    .audio-dock {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--surface);
+      border: 1px solid var(--gold);
+      padding: 15px 25px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+      z-index: 1000;
     }
 
-    .route-section h4 {
-      color: var(--gold-accent);
-      margin-bottom: 5px;
-    }
-
-    footer {
-      padding: 30px;
-      font-size: 0.9rem;
-      border-top: 1px solid #333;
-      color: #888;
+    .audio-btn {
+      background: var(--gold);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Sacerdotal Ordination</h1>
-    <p class="subtitle">"Called to Serve in His Love"</p>
-  </header>
+  <!-- Audio Element -->
+  <audio id="bgm" loop>
+    <!-- REPLACE WITH YOUR ACTUAL AUDIO FILE URL ON GITHUB -->
+    <source src="https://raw.githubusercontent.com/savioelizabeth1999-ctrl/ordination-invitation/main/your-music.mp3" type="audio/mpeg">
+  </audio>
 
-  <div class="container">
-    <!-- Ordinand Section -->
-    <div class="card">
-      <!-- YOUR PHOTO FILENAME -->
-      <img src="Savio.jpg" alt="Dn. Chettukadavil Savio VC" class="profile-img">
-      <h2>Dn. Chettukadavil Savio VC</h2>
-      <p style="color: var(--gold-accent);">To be Ordained Priest</p>
-    </div>
-
-    <!-- Ordaining Prelate Section -->
-    <div class="card">
-      <!-- BISHOP PHOTO FILENAME -->
-      <img src="Bishop.png" alt="Bp. Sebastian Adayanthrath" class="bishop-img">
-      <h3>Bp. Sebastian Adayanthrath</h3>
-      <p>Bishop of the Diocese of Mandya</p>
-      <p style="font-size: 0.9rem; color: #aaa;">Ordaining Prelate</p>
-    </div>
-
-    <!-- Event Details -->
-    <div class="card">
-      <h3 style="color: var(--gold-accent); margin-bottom: 15px;">Program Details</h3>
-      <table class="details-table">
-        <tr>
-          <td>Date:</td>
-          <td>Saturday, 8th May 2027</td>
-        </tr>
-        <tr>
-          <td>Venue:</td>
-          <td>De Paul Divine Retreat Centre, Thottakom, Vaikom</td>
-        </tr>
-      </table>
-
-      <a href="https://maps.app.goo.gl/5Rj2ycVFpeCNK8Kt7" target="_blank" class="btn">📍 Open Venue in Google Maps</a>
-    </div>
-
-    <!-- Route Map Info -->
-    <div class="card">
-      <h3 style="color: var(--gold-accent); margin-bottom: 15px;">Route Directions</h3>
-      
-      <div class="route-section">
-        <h4>🚘 From Ernakulam (~35.7 km)</h4>
-        <p>Take <strong>SH15</strong> towards Tripunithura / Thalayolaparambu to reach Thottakom, Vaikom.</p>
-        <a href="https://www.google.com/maps/dir/%E0%B4%8E%E0%B4%B1%E0%B4%A3%E0%B4%BE%E0%B4%95%E0%B5%81%E0%B4%B3%E0%B4%82,+%E0%B4%95%E0%B5%87%E0%B4%B0%E0%B4%B3,+%E0%B4%87%E0%B4%A8%E0%B5%8D%E0%B4%A4%E0%B5%8D%E0%B4%AF/%E0%B4%A1%E0%B4%BF+%E0%B4%AA%E0%B5%8B%E0%B5%BE+%E0%B4%A1%E0%B4%BF%E0%B4%B5%E0%B5%88%E0%B5%BB+%E0%B4%B1%E0%B4%BF%E0%B4%9F%E0%B5%8D%E0%B4%B0%E0%B5%80%E0%B4%B1%E0%B5%8D%E0%B4%B1%E0%B5%8D+%E0%B4%B8%E0%B5%86%E0%B5%BB%E0%B5%8D%E0%B4%B1%E0%B5%BC,+De+Paul+Retreat,+%E0%B4%B5%E0%B5%88%E0%B4%95%E0%B5%8D%E0%B4%95%E0%B4%82,+%E0%B4%A4%E0%B4%B2%E0%B4%AF%E0%B4%BE%E0%B4%B4%E0%B4%82,+%E0%B4%95%E0%B5%87%E0%B4%B0%E0%B4%B3,+%E0%B4%87%E0%B4%A8%E0%B5%8D%E0%B4%A4%E0%B5%8D%E0%B4%AF/data=!4m14!4m13!1m5!1m1!19sChIJqfN2-QgNCDsRVNRu8ES0zek!2m2!1d76.2998842!2d9.9816358!1m5!1m1!19sChIJNUpcIMF5CDsRJxPR6s5J_Aw!2m2!1d76.4047666!2d9.7380268!3e0?entry=gemini&utm_source=gemini&utm_campaign=gem-default" target="_blank" style="color: var(--gold-accent);">View Ernakulam Route on Map</a>
-      </div>
-
-      <hr style="border-color: #333; margin: 15px 0;">
-
-      <div class="route-section">
-        <h4>🚘 From Kottayam (~29.1 km)</h4>
-        <p>Take <strong>Kottayam - Kumarakom Rd</strong> and <strong>SH42</strong> towards Thottakom, Vaikom.</p>
-        <a href="https://www.google.com/maps/dir/%E0%B4%95%E0%B5%8B%E0%B4%9F%E0%B5%8D%E0%B4%9F%E0%B4%AF%E0%B4%82,+%E0%B4%95%E0%B5%87%E0%B4%B0%E0%B4%B3,+%E0%B4%87%E0%B4%A8%E0%B5%8D%E0%B4%A4%E0%B5%8D%E0%B4%AF/%E0%B4%A1%E0%B4%BF+%E0%B4%AA%E0%B5%8B%E0%B5%BE+%E0%B4%A1%E0%B4%BF%E0%B4%B5%E0%B5%88%E0%B5%BB+%E0%B4%B1%E0%B4%BF%E0%B4%9F%E0%B5%8D%E0%B4%B0%E0%B5%80%E0%B4%B1%E0%B5%8D%E0%B4%B1%E0%B5%8D+%E0%B4%B8%E0%B5%86%E0%B5%BB%E0%B5%8D%E0%B4%B1%E0%B5%BC,+De+Paul+Retreat,+%E0%B4%B5%E0%B5%88%E0%B4%95%E0%B5%8D%E0%B4%95%E0%B4%82,+%E0%B4%A4%E0%B4%B2%E0%B4%AF%E0%B4%BE%E0%B4%B4%E0%B4%82,+%E0%B4%95%E0%B5%87%E0%B4%B0%E0%B4%B3,+%E0%B4%87%E0%B4%A8%E0%B5%8D%E0%B4%A4%E0%B5%8D%E0%B4%AF/data=!4m14!4m13!1m5!1m1!19sChIJX0NrbKErBjsRbtCNj_YCK74!2m2!1d76.5221531!2d9.5915667999999989!1m5!1m1!19sChIJNUpcIMF5CDsRJxPR6s5J_Aw!2m2!1d76.4047666!2d9.7380268!3e0?entry=gemini&utm_source=gemini&utm_campaign=gem-default" target="_blank" style="color: var(--gold-accent);">View Kottayam Route on Map</a>
-      </div>
-    </div>
+  <!-- Floating Audio Dock -->
+  <div class="audio-dock" data-aos="fade-up">
+    <span>Sacred Melody</span>
+    <button class="audio-btn" onclick="toggleAudio()" id="playBtn">▶️</button>
   </div>
 
-  <footer>
-    <p>Prayerful Regards & Blessings</p>
-  </footer>
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1 data-aos="zoom-in" data-aos-duration="1500">Sacred Ordination</h1>
+    <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">
+      "By the Grace of God, set apart for the Gospel"
+    </p>
+  </header>
 
+  <!-- Ordinand Section -->
+  <section>
+    <div class="card" data-aos="flip-up" data-aos-duration="1000">
+      <div class="profile-frame">
+        <img src="Savio.jpg" alt="Dn. Chettukadavil Savio VC">
+      </div>
+      <div class="title-role">Called to the Priesthood</div>
+      <h2>Dn. Chettukadavil Savio VC</h2>
+      <p style="color: #bbb; font-style: italic;">With joyful heart, offering his life to the Almighty.</p>
+    </div>
+  </section>
+
+  <!-- Ordaining Prelate Section -->
+  <section>
+    <div class="card" data-aos="flip-down" data-aos-duration="1000">
+      <div class="profile-frame">
+        <img src="Bishop.png" alt="Bp. Sebastian Adayanthrath">
+      </div>
+      <div class="title-role">Ordaining Prelate</div>
+      <h2>Bp. Sebastian Adayanthrath</h2>
+      <p style="color: #bbb;">Bishop of the Diocese of Mandya</p>
+    </div>
+  </section>
+
+  <!-- Event Details Section -->
+  <section>
+    <div class="card" data-aos="zoom-in-up" data-aos-duration="1000">
+      <h2>Solemn Celebration</h2>
+      <p>Your prayers and presence are requested as Holy Orders are conferred.</p>
+      
+      <div class="details-grid">
+        <div class="detail-item">
+          <div class="detail-icon">📅</div>
+          <div>
+            <strong>Date</strong><br>Saturday, 8th May 2027
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">⛪</div>
+          <div>
+            <strong>Venue</strong><br>De Paul Divine Retreat Centre, Thottakom, Vaikom
+          </div>
+        </div>
+      </div>
+
+      <a href="https://maps.app.goo.gl/5Rj2ycVFpeCNK8Kt7" target="_blank" class="btn-maps">
+        📍 Navigate via Google Maps
+      </a>
+    </div>
+  </section>
+
+  <!-- Route Directions -->
+  <section style="min-height: 50vh;">
+    <div class="card" data-aos="fade-up" data-aos-duration="1000">
+      <h3 style="color: var(--gold); margin-bottom: 20px;">Travel Routes</h3>
+      <div style="margin-bottom: 15px;">
+        <p style="color: #fff; font-weight: bold;">🚗 From Ernakulam (~35.7 km)</p>
+        <a href="https://www.google.com/maps/dir/Ernakulam/De+Paul+Divine+Retreat+Centre" style="color: var(--gold); font-size: 0.9rem;">View Route Map</a>
+      </div>
+      <div>
+        <p style="color: #fff; font-weight: bold;">🚗 From Kottayam (~29.1 km)</p>
+        <a href="https://www.google.com/maps/dir/Kottayam/De+Paul+Divine+Retreat+Centre" style="color: var(--gold); font-size: 0.9rem;">View Route Map</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: false,
+      mirror: true
+    });
+
+    const audio = document.getElementById('bgm');
+    const playBtn = document.getElementById('playBtn');
+
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play().then(() => {
+          playBtn.innerText = "⏸️";
+        }).catch(e => {
+          console.log("Playback failed", e);
+        });
+      } else {
+        audio.pause();
+        playBtn.innerText = "▶️";
+      }
+    }
+
+    // Auto play on first interaction anywhere
+    document.body.addEventListener('click', () => {
+      if (audio.paused) {
+        toggleAudio();
+      }
+    }, { once: true });
+  </script>
 </body>
 </html>
